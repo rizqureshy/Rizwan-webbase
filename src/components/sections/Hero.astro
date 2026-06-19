@@ -61,18 +61,14 @@ import { credentials, book } from "../../lib/site";
       <div
         class="glass group relative aspect-[4/5] overflow-hidden rounded-[var(--radius-xl)] p-1.5 transition-transform duration-500 hover:-rotate-1"
       >
-        <!--
-          IMAGE SLOT: professional headshot.
-          Replace this placeholder with: <img src="/images/headshot.jpg"
-          alt="Rizwan Qureshy" class="h-full w-full rounded-[var(--radius-lg)] object-cover" />
-        -->
-        <div
-          class="flex h-full w-full items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-ink-700 to-ink-850 text-center text-sm text-text-faint"
-        >
-          Headshot slot
-          <br />
-          (add /images/headshot.jpg)
-        </div>
+        <img
+          src="/images/headshot.jpg"
+          alt="Rizwan Qureshy"
+          width="640"
+          height="800"
+          loading="eager"
+          class="h-full w-full rounded-[var(--radius-lg)] object-cover object-top"
+        />
       </div>
 
       <!-- Floating book chip -->

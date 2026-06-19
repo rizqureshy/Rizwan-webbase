@@ -85,8 +85,7 @@ work section and is intentionally off.
 These placeholders are clearly marked in the code. Drop in real assets and
 replace the placeholder markup noted in the comment beside each one:
 
-- `public/images/headshot.jpg` (home hero)
-- `public/images/about-photo.jpg` (about page)
+- `public/images/headshot.jpg` (used on the home hero and the about page)
 - `public/images/book-cover.jpg` (book page and home callout)
 - `public/files/rizwan-qureshy-bio.pdf` (about page download)
 - `public/og/default.png` (1200x630 social share image)

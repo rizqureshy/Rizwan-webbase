@@ -13,14 +13,12 @@ export const site = {
     "Rizwan Qureshy is an AI strategist working at the intersection of enterprise AI adoption, sales enablement, and AI governance. Author of Think Before You AI.",
   // TODO: replace with your real custom domain.
   url: "https://example.com",
-  // TODO: replace with your real contact email.
-  email: "hello@example.com",
+  email: "rizqureshy@gmail.com",
   locale: "en_US",
 };
 
 export const social = {
-  // TODO: replace with your real LinkedIn URL.
-  linkedin: "https://www.linkedin.com/in/rizwan-qureshy",
+  linkedin: "https://www.linkedin.com/in/rizwan-qureshy-41ab7931/",
   // TODO: replace with the book's real Amazon URL.
   amazon: "https://www.amazon.com/dp/REPLACE-ME",
 };
