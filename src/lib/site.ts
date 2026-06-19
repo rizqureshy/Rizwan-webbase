@@ -19,8 +19,7 @@ export const site = {
 
 export const social = {
   linkedin: "https://www.linkedin.com/in/rizwan-qureshy-41ab7931/",
-  // TODO: replace with the book's real Amazon URL.
-  amazon: "https://www.amazon.com/dp/REPLACE-ME",
+  amazon: "https://www.amazon.ca/dp/B0F3PFJDXQ",
 };
 
 export const book = {

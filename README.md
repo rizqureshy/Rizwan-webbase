@@ -98,9 +98,8 @@ Search the codebase for `TODO` and update:
 
 - Custom domain, currently `https://example.com` (in `src/lib/site.ts`,
   `astro.config.mjs`, and `public/robots.txt`).
-- The book's Amazon URL (in `src/lib/site.ts`).
 
-Contact email and LinkedIn URL are already set.
+Contact email, LinkedIn URL, and the book's Amazon link are already set.
 
 ## SEO and metadata
 
