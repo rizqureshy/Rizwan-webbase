@@ -1,0 +1,45 @@
+---
+import { site, social } from "../../lib/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-32 border-t border-line/60">
+  <div
+    class="mx-auto flex max-w-[var(--max-content)] flex-col gap-8 px-5 py-12 md:flex-row md:items-center md:justify-between md:px-8"
+  >
+    <div>
+      <p class="text-sm font-semibold">{site.name}</p>
+      <p class="mt-1 text-sm text-text-muted">{site.title}</p>
+    </div>
+
+    <ul class="flex flex-wrap items-center gap-5 text-sm text-text-muted">
+      <li>
+        <a
+          href={social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors hover:text-text">LinkedIn</a
+        >
+      </li>
+      <li>
+        <a
+          href={social.amazon}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors hover:text-text">The book</a
+        >
+      </li>
+      <li>
+        <a href={`mailto:${site.email}`} class="transition-colors hover:text-text"
+          >Email</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="mx-auto max-w-[var(--max-content)] px-5 pb-10 md:px-8">
+    <p class="text-xs text-text-faint">
+      &copy; {year} {site.name}. All rights reserved.
+    </p>
+  </div>
+</footer>
