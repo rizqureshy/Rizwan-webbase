@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MagneticButton from "../components/react/MagneticButton.tsx";
+---
+
+<BaseLayout title="Page not found" description="That page could not be found.">
+  <section
+    class="bg-aurora relative flex min-h-[80svh] items-center justify-center px-5 text-center"
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-transparent to-ink-900"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative">
+      <p class="font-mono text-sm text-azure-400">404</p>
+      <h1 class="mt-4 text-3xl font-semibold md:text-4xl">
+        This page wandered off.
+      </h1>
+      <p class="mx-auto mt-4 max-w-md text-text-muted">
+        The link may be broken or the page may have moved. Let's get you back on
+        track.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <MagneticButton client:visible href="/">Back home</MagneticButton>
+        <MagneticButton client:visible href="/writing" variant="ghost">
+          Read the writing
+        </MagneticButton>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
