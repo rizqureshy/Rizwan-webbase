@@ -1,0 +1,178 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SmoothScroll from "../components/react/SmoothScroll.tsx";
+import Reveal from "../components/react/Reveal.tsx";
+import PageHeader from "../components/PageHeader.astro";
+import CTASection from "../components/sections/CTASection.astro";
+import MagneticButton from "../components/react/MagneticButton.tsx";
+import { credentials } from "../lib/site";
+
+// Career arc. Verified facts only, framed per the brief.
+const timeline = [
+  {
+    period: "Early career",
+    org: "SATMAP (now Afiniti) and IBEX Global",
+    detail:
+      "Worked in applied AI driven enterprises before the generative wave, building intuition for how AI changes real operations at scale.",
+  },
+  {
+    period: "Today",
+    org: "Equinix",
+    detail:
+      "AI strategist and leader at the world's largest data center company. Product Owner of ACE, Equinix's first generative AI based digital sales assistant, used by go-to-market teams to improve sales effectiveness.",
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="The applied AI career arc of Rizwan Qureshy, from SATMAP and IBEX to leading AI strategy at Equinix, plus credentials and point of view."
+>
+  <SmoothScroll client:load />
+
+  <PageHeader
+    eyebrow="About"
+    title="Working in applied AI before the generative wave, and leading strategy through it now."
+    intro="I work at the intersection of enterprise AI adoption, sales enablement, and AI governance, helping large organizations turn AI from a promise into responsible, measurable impact."
+  />
+
+  <!-- Photo + narrative -->
+  <section class="mx-auto max-w-[var(--max-content)] px-5 py-16 md:px-8">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
+      <Reveal client:visible>
+        <div
+          class="glass sticky top-28 aspect-[4/5] overflow-hidden rounded-[var(--radius-xl)] p-1.5"
+        >
+          <!--
+            IMAGE SLOT: professional photo.
+            Replace with <img src="/images/about-photo.jpg" alt="Rizwan Qureshy" class="h-full w-full rounded-[var(--radius-lg)] object-cover" />
+          -->
+          <div
+            class="flex h-full w-full items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-ink-700 to-ink-850 text-center text-sm text-text-faint"
+          >
+            Professional photo slot
+            <br />
+            (add /images/about-photo.jpg)
+          </div>
+        </div>
+      </Reveal>
+
+      <div class="max-w-[var(--max-prose)]">
+        <Reveal client:visible>
+          <div class="prose-custom space-y-5 text-text-muted">
+            <p class="text-lg">
+              My path into AI did not start with large language models. It
+              started years earlier, inside enterprises that were already using
+              AI to run real operations. That gave me something the current hype
+              cycle often skips: a feel for what changes when AI meets people,
+              process, and accountability.
+            </p>
+            <p>
+              At Equinix I lead AI strategy and own ACE, the company's first
+              generative AI based digital sales assistant. Building and scaling
+              it taught me that the model is the easy part. The hard part is
+              trust, governance, and getting thousands of people to change how
+              they work.
+            </p>
+            <p>
+              I also wrote a book about it, contribute to Gartner thought
+              leadership, and spend a lot of time helping leaders separate what
+              is real from what is noise.
+            </p>
+          </div>
+        </Reveal>
+
+        <!-- Timeline -->
+        <Reveal client:visible delay={0.05}>
+          <h2 class="mt-14 text-xl font-semibold">Career arc</h2>
+        </Reveal>
+        <ol class="mt-6 space-y-6">
+          {
+            timeline.map((t, i) => (
+              <Reveal client:visible delay={i * 0.06} as="li">
+                <div class="glass rounded-[var(--radius-lg)] p-5">
+                  <p class="text-xs uppercase tracking-wider text-azure-400">
+                    {t.period}
+                  </p>
+                  <p class="mt-1 font-semibold">{t.org}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-text-muted">
+                    {t.detail}
+                  </p>
+                </div>
+              </Reveal>
+            ))
+          }
+        </ol>
+
+        <!-- Bio download slot -->
+        <Reveal client:visible>
+          <div class="mt-12 flex flex-wrap items-center gap-4">
+            <!--
+              FILE SLOT: one page bio PDF. Add /files/rizwan-qureshy-bio.pdf,
+              then this button will serve it.
+            -->
+            <MagneticButton
+              client:visible
+              href="/files/rizwan-qureshy-bio.pdf"
+              variant="ghost"
+              external={true}
+            >
+              Download one page bio (PDF)
+            </MagneticButton>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section
+    class="mx-auto max-w-[var(--max-content)] px-5 py-16 md:px-8"
+    aria-label="Credentials"
+  >
+    <Reveal client:visible>
+      <h2 class="text-2xl font-semibold md:text-3xl">Credentials</h2>
+      <p class="mt-3 max-w-xl text-text-muted">
+        Certifications in AI, Design and Technology, Digital Transformation, and
+        the Ethics of AI from Harvard, MIT, and Texas McCombs, plus governance
+        and product credentials.
+      </p>
+    </Reveal>
+
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2">
+      {
+        credentials.map((c, i) => (
+          <Reveal client:visible delay={i * 0.05} as="li">
+            <div class="glass h-full rounded-[var(--radius-lg)] p-6">
+              <h3 class="font-semibold text-azure-400">{c.label}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-text-muted">
+                {c.detail}
+              </p>
+            </div>
+          </Reveal>
+        ))
+      }
+    </ul>
+
+    <Reveal client:visible>
+      <ul
+        class="mt-8 flex flex-wrap gap-3 text-sm text-text-muted"
+        aria-label="Additional credentials"
+      >
+        {
+          [
+            "IAPP Certified AI Governance Professional (AIGP)",
+            "IEEE CertifAIEd AI Ethicist",
+            "Azure AI Fundamentals",
+            "IBM AI Product Manager",
+            "Gartner contributor",
+          ].map((badge) => (
+            <li class="glass rounded-full px-4 py-2">{badge}</li>
+          ))
+        }
+      </ul>
+    </Reveal>
+  </section>
+
+  <CTASection />
+</BaseLayout>

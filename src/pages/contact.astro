@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SmoothScroll from "../components/react/SmoothScroll.tsx";
+import Reveal from "../components/react/Reveal.tsx";
+import PageHeader from "../components/PageHeader.astro";
+import MagneticButton from "../components/react/MagneticButton.tsx";
+import { site, social } from "../lib/site";
+
+const reasons = [
+  { label: "Speaking", detail: "Invite me to a keynote, panel, or briefing." },
+  { label: "The book", detail: "Bulk orders, reviews, or media about the book." },
+  {
+    label: "Connecting",
+    detail: "Compare notes on responsible, high-impact enterprise AI.",
+  },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Rizwan Qureshy about speaking, the book, or enterprise AI strategy."
+>
+  <SmoothScroll client:load />
+
+  <PageHeader
+    eyebrow="Contact"
+    title="Let's talk."
+    intro="The fastest way to reach me is email or LinkedIn. Tell me a little about what you have in mind and I will get back to you."
+  />
+
+  <section class="mx-auto max-w-[var(--max-content)] px-5 py-12 md:px-8">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr]">
+      <!-- Primary contact -->
+      <Reveal client:visible>
+        <div class="glass rounded-[var(--radius-xl)] p-8 md:p-10">
+          <h2 class="text-xl font-semibold">Send a note</h2>
+          <p class="mt-3 text-text-muted">
+            No forms, no funnels. A direct email reaches me best.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <MagneticButton
+              client:visible
+              href={`mailto:${site.email}`}
+              external={false}
+            >
+              Email me
+            </MagneticButton>
+            <MagneticButton
+              client:visible
+              href={social.linkedin}
+              variant="ghost"
+              external={true}
+            >
+              Connect on LinkedIn
+            </MagneticButton>
+          </div>
+
+          <p class="mt-6 text-sm text-text-faint">
+            <!-- TODO: replace hello@example.com in src/lib/site.ts -->
+            {site.email}
+          </p>
+
+          {/*
+            OPTIONAL FORM PROVIDER (commented out).
+            To add a real contact form with no backend, sign up with a provider
+            like Formspree and uncomment this block, replacing FORM_ID:
+
+            <form action="https://formspree.io/f/FORM_ID" method="POST" class="mt-8 space-y-4">
+              <label class="block text-sm">
+                Name
+                <input name="name" required class="mt-1 w-full rounded-[var(--radius-md)] border border-line bg-ink-850 px-4 py-2.5" />
+              </label>
+              <label class="block text-sm">
+                Email
+                <input type="email" name="email" required class="mt-1 w-full rounded-[var(--radius-md)] border border-line bg-ink-850 px-4 py-2.5" />
+              </label>
+              <label class="block text-sm">
+                Message
+                <textarea name="message" rows="4" required class="mt-1 w-full rounded-[var(--radius-md)] border border-line bg-ink-850 px-4 py-2.5"></textarea>
+              </label>
+              <button type="submit" class="rounded-full bg-azure-500 px-7 py-3 text-sm font-medium text-ink-950">Send</button>
+            </form>
+          */}
+        </div>
+      </Reveal>
+
+      <!-- Reasons -->
+      <div class="space-y-4">
+        {
+          reasons.map((r, i) => (
+            <Reveal client:visible delay={i * 0.06}>
+              <div class="glass rounded-[var(--radius-lg)] p-6">
+                <h3 class="font-semibold text-azure-400">{r.label}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-text-muted">
+                  {r.detail}
+                </p>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

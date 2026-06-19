@@ -1,0 +1,41 @@
+---
+import Reveal from "../react/Reveal.tsx";
+import MagneticButton from "../react/MagneticButton.tsx";
+
+interface Props {
+  title?: string;
+  body?: string;
+}
+const {
+  title = "Let's build AI worth trusting.",
+  body = "Whether you are scaling adoption, tightening governance, or looking for a speaker who can make AI strategy land with executives, I would like to hear from you.",
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden" aria-label="Get in touch">
+  <div class="bg-aurora absolute inset-0 opacity-70" aria-hidden="true"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-ink-900 via-transparent to-ink-900"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto max-w-[var(--max-content)] px-5 py-28 text-center md:px-8 md:py-36"
+  >
+    <Reveal client:visible>
+      <h2 class="mx-auto max-w-2xl text-3xl font-semibold md:text-4xl">
+        {title}
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-lg text-text-muted">{body}</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <MagneticButton client:visible href="/contact">
+          Get in touch
+        </MagneticButton>
+        <MagneticButton client:visible href="/book" variant="ghost">
+          Read the book
+        </MagneticButton>
+      </div>
+    </Reveal>
+  </div>
+</section>

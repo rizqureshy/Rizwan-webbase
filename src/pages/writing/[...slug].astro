@@ -1,0 +1,102 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SmoothScroll from "../../components/react/SmoothScroll.tsx";
+import Reveal from "../../components/react/Reveal.tsx";
+import { formatDate, readingTime } from "../../lib/format";
+import { site } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const minutes = readingTime(post.body, post.data.readingTime);
+
+// Article structured data, verified author only.
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.updatedDate
+    ? { dateModified: post.data.updatedDate.toISOString() }
+    : {}),
+  author: { "@type": "Person", name: site.name, url: site.url },
+};
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  article={true}
+>
+  <SmoothScroll client:load />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <article class="mx-auto max-w-[var(--max-prose)] px-5 pt-36 pb-12 md:pt-44">
+    <Reveal client:load>
+      <a
+        href="/writing"
+        class="text-sm text-azure-400 transition-colors hover:text-azure-500"
+        >&larr; All writing</a
+      >
+      <div class="mt-6 flex flex-wrap items-center gap-3 text-xs text-text-faint">
+        {
+          post.data.pillar && (
+            <span class="rounded-full bg-ink-700 px-2.5 py-1 text-azure-400">
+              {post.data.pillar}
+            </span>
+          )
+        }
+        <time datetime={post.data.pubDate.toISOString()}>
+          {formatDate(post.data.pubDate)}
+        </time>
+        <span>&middot;</span>
+        <span>{minutes} min read</span>
+      </div>
+
+      <h1 class="mt-5 text-3xl font-semibold leading-tight md:text-4xl">
+        {post.data.title}
+      </h1>
+      <p class="mt-4 text-lg text-text-muted">{post.data.description}</p>
+    </Reveal>
+
+    <hr class="my-10 border-line/50" />
+
+    <div
+      class="prose prose-invert max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-azure-400 prose-strong:text-text prose-blockquote:border-azure-500 prose-blockquote:text-text-muted font-serif prose-p:text-[1.075rem] prose-p:leading-relaxed prose-li:text-text-muted"
+    >
+      <Content />
+    </div>
+  </article>
+
+  <div class="mx-auto max-w-[var(--max-prose)] px-5 pb-24">
+    <div class="glass rounded-[var(--radius-lg)] p-6">
+      <p class="text-sm font-semibold">Rizwan Qureshy</p>
+      <p class="mt-1 text-sm text-text-muted">
+        AI strategist at Equinix and author of Think Before You AI. Writing on
+        responsible, high-impact enterprise AI.
+      </p>
+      <div class="mt-4 flex gap-4 text-sm">
+        <a
+          href="/about"
+          class="text-azure-400 transition-colors hover:text-azure-500"
+          >About</a
+        >
+        <a
+          href="/contact"
+          class="text-azure-400 transition-colors hover:text-azure-500"
+          >Get in touch</a
+        >
+      </div>
+    </div>
+  </div>
+</BaseLayout>

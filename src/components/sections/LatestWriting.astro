@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import Reveal from "../react/Reveal.tsx";
+import ArticleCard from "../ArticleCard.astro";
+import { readingTime } from "../../lib/format";
+
+const posts = (await getCollection("writing", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+---
+
+<section
+  class="mx-auto max-w-[var(--max-content)] px-5 py-24 md:px-8"
+  aria-label="Latest writing"
+>
+  <Reveal client:visible>
+    <div class="flex items-end justify-between gap-6">
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] text-azure-400">Insights</p>
+        <h2 class="mt-4 text-2xl font-semibold md:text-3xl">Latest writing</h2>
+      </div>
+      <a
+        href="/writing"
+        class="hidden shrink-0 text-sm text-azure-400 transition-colors hover:text-azure-500 sm:inline"
+        >All articles &rarr;</a
+      >
+    </div>
+  </Reveal>
+
+  <ul class="mt-12 grid gap-5 md:grid-cols-3">
+    {
+      posts.map((post, i) => (
+        <Reveal client:visible delay={i * 0.06} as="li">
+          <ArticleCard
+            href={`/writing/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            pillar={post.data.pillar}
+            minutes={readingTime(post.body, post.data.readingTime)}
+          />
+        </Reveal>
+      ))
+    }
+  </ul>
+
+  <div class="mt-10 sm:hidden">
+    <a href="/writing" class="text-sm text-azure-400">All articles &rarr;</a>
+  </div>
+</section>

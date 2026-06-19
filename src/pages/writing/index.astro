@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SmoothScroll from "../../components/react/SmoothScroll.tsx";
+import Reveal from "../../components/react/Reveal.tsx";
+import PageHeader from "../../components/PageHeader.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import CTASection from "../../components/sections/CTASection.astro";
+import { readingTime } from "../../lib/format";
+
+const posts = (await getCollection("writing", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+---
+
+<BaseLayout
+  title="Writing"
+  description="Articles by Rizwan Qureshy on responsible AI, sales enablement, build vs buy, and scaling enterprise AI adoption."
+>
+  <SmoothScroll client:load />
+
+  <PageHeader
+    eyebrow="Insights"
+    title="Writing on responsible, high-impact enterprise AI."
+    intro="Notes, frameworks, and arguments on the themes I care about most. Grounded in practice, written for the people making the decisions."
+  />
+
+  <section class="mx-auto max-w-[var(--max-content)] px-5 pb-16 md:px-8">
+    {
+      posts.length === 0 ? (
+        <p class="text-text-muted">New articles are on the way.</p>
+      ) : (
+        <ul class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post, i) => (
+            <Reveal client:visible delay={(i % 3) * 0.06} as="li">
+              <ArticleCard
+                href={`/writing/${post.id}`}
+                title={post.data.title}
+                description={post.data.description}
+                pubDate={post.data.pubDate}
+                pillar={post.data.pillar}
+                minutes={readingTime(post.body, post.data.readingTime)}
+              />
+            </Reveal>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+
+  <CTASection
+    title="Want these in your inbox?"
+    body="There is no newsletter yet. For now, connect on LinkedIn or get in touch and I will make sure you see what comes next."
+  />
+</BaseLayout>

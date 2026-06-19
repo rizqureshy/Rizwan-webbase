@@ -1,0 +1,45 @@
+---
+import Reveal from "./react/Reveal.tsx";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+}
+const { eyebrow, title, intro } = Astro.props;
+---
+
+<section class="relative overflow-hidden">
+  <div class="bg-aurora absolute inset-0 opacity-60" aria-hidden="true"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-transparent to-ink-900"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto max-w-[var(--max-content)] px-5 pt-36 pb-16 md:px-8 md:pt-44"
+  >
+    {
+      eyebrow && (
+        <Reveal client:load>
+          <p class="text-sm uppercase tracking-[0.2em] text-azure-400">
+            {eyebrow}
+          </p>
+        </Reveal>
+      )
+    }
+    <Reveal client:load delay={0.05}>
+      <h1 class="mt-4 max-w-3xl text-3xl font-semibold md:text-4xl">
+        {title}
+      </h1>
+    </Reveal>
+    {
+      intro && (
+        <Reveal client:load delay={0.1}>
+          <p class="mt-6 max-w-2xl text-lg text-text-muted">{intro}</p>
+        </Reveal>
+      )
+    }
+  </div>
+</section>

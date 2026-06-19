@@ -1,0 +1,65 @@
+---
+import Reveal from "../react/Reveal.tsx";
+import MagneticButton from "../react/MagneticButton.tsx";
+import { book } from "../../lib/site";
+---
+
+<section
+  class="mx-auto max-w-[var(--max-content)] px-5 py-24 md:px-8"
+  aria-label="Featured book"
+>
+  <div
+    class="glass relative overflow-hidden rounded-[var(--radius-xl)] px-6 py-12 md:px-14 md:py-16"
+  >
+    <!-- soft accent glow -->
+    <div
+      class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="relative grid gap-10 md:grid-cols-[1fr_auto] md:items-center">
+      <div>
+        <Reveal client:visible>
+          <p class="text-sm uppercase tracking-[0.2em] text-azure-400">
+            The book
+          </p>
+          <h2 class="mt-4 max-w-xl text-2xl font-semibold md:text-3xl">
+            {book.title}
+          </h2>
+          <p class="mt-3 max-w-xl text-lg text-text-muted">{book.subtitle}</p>
+          <p class="mt-5 text-sm text-violet-400">{book.highlight}</p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <MagneticButton client:visible href="/book">
+              Explore the book
+            </MagneticButton>
+            <MagneticButton
+              client:visible
+              href={book.buyUrl}
+              variant="ghost"
+              external={true}
+            >
+              Buy on Amazon
+            </MagneticButton>
+          </div>
+        </Reveal>
+      </div>
+
+      <!-- Book cover slot -->
+      <Reveal client:visible delay={0.1}>
+        <div
+          class="glass mx-auto flex aspect-[3/4] w-44 items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br from-ink-700 to-ink-850 text-center text-xs text-text-faint md:w-52"
+        >
+          <!--
+            IMAGE SLOT: book cover.
+            Replace with <img src="/images/book-cover.jpg" alt="Cover of Think Before You AI" ... />
+          -->
+          Book cover slot
+          <br />
+          (add /images/book-cover.jpg)
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

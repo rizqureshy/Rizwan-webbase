@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SmoothScroll from "../components/react/SmoothScroll.tsx";
+import Reveal from "../components/react/Reveal.tsx";
+import PageHeader from "../components/PageHeader.astro";
+import MagneticButton from "../components/react/MagneticButton.tsx";
+import { book, pillars } from "../lib/site";
+
+const audience = [
+  "Enterprise executives deciding where to place their AI bets",
+  "Sales and revenue leaders looking to turn AI into pipeline",
+  "Enablement and operations teams rolling AI out to large teams",
+  "Anyone tired of AI hype who wants a strategic, grounded view",
+];
+---
+
+<BaseLayout
+  title="Book"
+  description="Think Before You AI: A Strategic Guide to Generative AI for Sales Enablement and Revenue Growth, by Rizwan Qureshy."
+>
+  <SmoothScroll client:load />
+
+  <PageHeader eyebrow="The book" title={book.title} intro={book.subtitle} />
+
+  <section class="mx-auto max-w-[var(--max-content)] px-5 py-12 md:px-8">
+    <div class="grid gap-12 lg:grid-cols-[auto_1fr] lg:items-start">
+      <!-- Cover + buy -->
+      <Reveal client:visible>
+        <div class="lg:sticky lg:top-28">
+          <div
+            class="glass mx-auto flex aspect-[3/4] w-56 items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br from-ink-700 to-ink-850 text-center text-xs text-text-faint"
+          >
+            <!--
+              IMAGE SLOT: book cover.
+              Replace with <img src="/images/book-cover.jpg" alt="Cover of Think Before You AI" ... />
+            -->
+            Book cover slot
+            <br />
+            (add /images/book-cover.jpg)
+          </div>
+          <p class="mt-5 text-center text-sm text-violet-400">
+            {book.highlight}
+          </p>
+          <div class="mt-5 flex justify-center">
+            <MagneticButton
+              client:visible
+              href={book.buyUrl}
+              external={true}
+            >
+              Buy on Amazon
+            </MagneticButton>
+          </div>
+        </div>
+      </Reveal>
+
+      <div class="max-w-[var(--max-prose)]">
+        <Reveal client:visible>
+          <p class="text-lg text-text-muted">
+            A practical, strategic guide for leaders who want generative AI to
+            move revenue, not just headlines. It connects the technology to the
+            decisions that actually determine whether AI pays off in sales and
+            enablement.
+          </p>
+        </Reveal>
+
+        <!-- Pillars -->
+        <Reveal client:visible delay={0.05}>
+          <h2 class="mt-12 text-xl font-semibold">What it covers</h2>
+        </Reveal>
+        <ul class="mt-6 space-y-3">
+          {
+            pillars.map((p, i) => (
+              <Reveal client:visible delay={i * 0.05} as="li">
+                <div class="glass flex gap-4 rounded-[var(--radius-lg)] p-5">
+                  <span class="font-mono text-sm text-azure-400">0{i + 1}</span>
+                  <div>
+                    <h3 class="font-semibold">{p.title}</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-text-muted">
+                      {p.summary}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))
+          }
+        </ul>
+
+        <!-- Who it is for -->
+        <Reveal client:visible delay={0.05}>
+          <h2 class="mt-12 text-xl font-semibold">Who it is for</h2>
+        </Reveal>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+          {
+            audience.map((a, i) => (
+              <Reveal client:visible delay={i * 0.05} as="li">
+                <div class="glass flex items-start gap-3 rounded-[var(--radius-md)] p-4 text-sm text-text-muted">
+                  <span
+                    class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-azure-400"
+                    aria-hidden="true"
+                  />
+                  {a}
+                </div>
+              </Reveal>
+            ))
+          }
+        </ul>
+
+        <Reveal client:visible>
+          <div class="mt-12">
+            <MagneticButton
+              client:visible
+              href={book.buyUrl}
+              external={true}
+            >
+              Get the book on Amazon
+            </MagneticButton>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
