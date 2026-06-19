@@ -6,6 +6,7 @@ import PageHeader from "../components/PageHeader.astro";
 import CTASection from "../components/sections/CTASection.astro";
 import MagneticButton from "../components/react/MagneticButton.tsx";
 import { credentials } from "../lib/site";
+import { withBase } from "../lib/url";
 
 // Career arc. Verified facts only, framed per the brief.
 const timeline = [
@@ -44,7 +45,7 @@ const timeline = [
           class="glass sticky top-28 aspect-[4/5] overflow-hidden rounded-[var(--radius-xl)] p-1.5"
         >
           <img
-            src="/images/headshot.jpg"
+            src={withBase("/images/headshot.jpg")}
             alt="Rizwan Qureshy"
             width="640"
             height="800"
@@ -110,7 +111,7 @@ const timeline = [
             -->
             <MagneticButton
               client:visible
-              href="/files/rizwan-qureshy-bio.pdf"
+              href={withBase("/files/rizwan-qureshy-bio.pdf")}
               variant="ghost"
               external={true}
             >

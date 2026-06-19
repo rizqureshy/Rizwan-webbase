@@ -3,6 +3,7 @@ import HeroCanvas from "../react/HeroCanvas.tsx";
 import AnimatedHeadline from "../react/AnimatedHeadline.tsx";
 import MagneticButton from "../react/MagneticButton.tsx";
 import { credentials, book } from "../../lib/site";
+import { withBase } from "../../lib/url";
 ---
 
 <section
@@ -47,10 +48,10 @@ import { credentials, book } from "../../lib/site";
       </p>
 
       <div class="mt-9 flex flex-wrap items-center gap-4">
-        <MagneticButton client:visible href="/book">
+        <MagneticButton client:visible href={withBase("/book")}>
           Read the book
         </MagneticButton>
-        <MagneticButton client:visible href="/contact" variant="ghost">
+        <MagneticButton client:visible href={withBase("/contact")} variant="ghost">
           Get in touch
         </MagneticButton>
       </div>
@@ -62,7 +63,7 @@ import { credentials, book } from "../../lib/site";
         class="glass group relative aspect-[4/5] overflow-hidden rounded-[var(--radius-xl)] p-1.5 transition-transform duration-500 hover:-rotate-1"
       >
         <img
-          src="/images/headshot.jpg"
+          src={withBase("/images/headshot.jpg")}
           alt="Rizwan Qureshy"
           width="640"
           height="800"

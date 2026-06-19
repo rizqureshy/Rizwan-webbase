@@ -10,6 +10,11 @@ import tailwindcss from "@tailwindcss/vite";
 // When you move to a custom domain, change this and add public/CNAME.
 export default defineConfig({
   site: "https://rizqureshy.github.io",
+  // Served as a GitHub Pages project site under this repo's name. If you move
+  // to a user site (repo named <username>.github.io) or a custom domain, set
+  // this to "/" (or remove it). All internal links use withBase() so they
+  // follow this value automatically.
+  base: "/Rizwan-webbase",
   integrations: [react(), mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

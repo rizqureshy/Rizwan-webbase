@@ -1,6 +1,7 @@
 ---
 import Reveal from "../react/Reveal.tsx";
 import MagneticButton from "../react/MagneticButton.tsx";
+import { withBase } from "../../lib/url";
 
 interface Props {
   title?: string;
@@ -29,10 +30,10 @@ const {
       </h2>
       <p class="mx-auto mt-6 max-w-xl text-lg text-text-muted">{body}</p>
       <div class="mt-10 flex flex-wrap justify-center gap-4">
-        <MagneticButton client:visible href="/contact">
+        <MagneticButton client:visible href={withBase("/contact")}>
           Get in touch
         </MagneticButton>
-        <MagneticButton client:visible href="/book" variant="ghost">
+        <MagneticButton client:visible href={withBase("/book")} variant="ghost">
           Read the book
         </MagneticButton>
       </div>

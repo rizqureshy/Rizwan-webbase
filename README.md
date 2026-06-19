@@ -121,16 +121,17 @@ to static visuals. Text colors target WCAG AA contrast.
 
 ## Deploy (GitHub Pages)
 
-This repo is set up to deploy to a GitHub Pages **user site** at the root,
-`https://rizqureshy.github.io`, via the workflow in
-`.github/workflows/deploy.yml`. To go live:
+This repo deploys to a GitHub Pages **project site** at
+`https://rizqureshy.github.io/Rizwan-webbase/`, via the workflow in
+`.github/workflows/deploy.yml`. Because it serves under a subpath, the base
+path is set with `base: "/Rizwan-webbase"` in `astro.config.mjs`, and every
+internal link and asset uses `withBase()` (`src/lib/url.ts`) so nothing 404s.
 
-1. **Name the repo `rizqureshy.github.io`.** A user site only serves from a
-   repo with that exact name. Rename this repo in Settings, or create a new
-   repo named `rizqureshy.github.io` and push this code to it.
-2. **Enable Pages from Actions.** In the repo, go to Settings, then Pages, and
-   set Source to "GitHub Actions".
-3. **Push.** The workflow builds and deploys automatically on push to the
+To go live (one time):
+
+1. **Enable Pages from Actions.** Repo Settings, then Pages, set Source to
+   "GitHub Actions".
+2. **Push.** The workflow builds and deploys automatically on push to the
    configured branch (currently `claude/vibrant-meitner-j1ynb9`; change it to
    `main` in the workflow once that is your default branch). You can also run
    it manually from the Actions tab.
@@ -138,12 +139,13 @@ This repo is set up to deploy to a GitHub Pages **user site** at the root,
 The site is fully static, so it also hosts anywhere else (Vercel, Netlify,
 Cloudflare Pages): build with `npm run build`, publish `dist/`.
 
-### Custom domain later
+### Moving to a root site or custom domain later
 
-Set `site` in `astro.config.mjs` and `url` in `src/lib/site.ts` to the new
-domain, add a `public/CNAME` file containing the domain, and configure the
-domain under Settings, then Pages. Canonical URLs, the sitemap, and social
-tags will follow.
+If you rename the repo to `rizqureshy.github.io` (user site) or add a custom
+domain, the site serves at the root. In that case set `base: "/"` (or remove
+it) in `astro.config.mjs`, update `site` there and `url` in `src/lib/site.ts`,
+and for a domain add a `public/CNAME` file. Every link uses `withBase()`, so it
+follows the new base with no other changes.
 
 ## Note on the WebGL hero
 

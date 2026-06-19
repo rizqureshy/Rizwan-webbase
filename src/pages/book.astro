@@ -5,6 +5,7 @@ import Reveal from "../components/react/Reveal.tsx";
 import PageHeader from "../components/PageHeader.astro";
 import MagneticButton from "../components/react/MagneticButton.tsx";
 import { book, pillars } from "../lib/site";
+import { withBase } from "../lib/url";
 
 const audience = [
   "Enterprise executives deciding where to place their AI bets",
@@ -28,7 +29,7 @@ const audience = [
       <Reveal client:visible>
         <div class="lg:sticky lg:top-28">
           <img
-            src="/images/book-cover.jpg"
+            src={withBase("/images/book-cover.jpg")}
             alt="Cover of Think Before You AI by Rizwan Qureshy"
             width="448"
             height="597"

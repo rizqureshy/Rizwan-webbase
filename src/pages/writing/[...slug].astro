@@ -5,6 +5,7 @@ import SmoothScroll from "../../components/react/SmoothScroll.tsx";
 import Reveal from "../../components/react/Reveal.tsx";
 import { formatDate, readingTime } from "../../lib/format";
 import { site } from "../../lib/site";
+import { withBase } from "../../lib/url";
 
 export async function getStaticPaths() {
   const posts = await getCollection("writing", ({ data }) => !data.draft);
@@ -44,7 +45,7 @@ const articleSchema = {
   <article class="mx-auto max-w-[var(--max-prose)] px-5 pt-36 pb-12 md:pt-44">
     <Reveal client:load>
       <a
-        href="/writing"
+        href={withBase("/writing")}
         class="text-sm text-azure-400 transition-colors hover:text-azure-500"
         >&larr; All writing</a
       >
@@ -87,12 +88,12 @@ const articleSchema = {
       </p>
       <div class="mt-4 flex gap-4 text-sm">
         <a
-          href="/about"
+          href={withBase("/about")}
           class="text-azure-400 transition-colors hover:text-azure-500"
           >About</a
         >
         <a
-          href="/contact"
+          href={withBase("/contact")}
           class="text-azure-400 transition-colors hover:text-azure-500"
           >Get in touch</a
         >

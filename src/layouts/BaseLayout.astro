@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Nav from "../components/nav/Nav.astro";
 import Footer from "../components/nav/Footer.astro";
 import { site, social, book } from "../lib/site";
+import { withBase } from "../lib/url";
 
 interface Props {
   title?: string;
@@ -22,7 +23,7 @@ const {
 
 const pageTitle = title ? `${title} | ${site.name}` : `${site.name}, ${site.title}`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
-const ogImageUrl = new URL(ogImage, site.url).href;
+const ogImageUrl = new URL(withBase(ogImage), site.url).href;
 
 // JSON-LD: Person + Book. Verified facts only.
 const personSchema = {
@@ -58,7 +59,7 @@ const bookSchema = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <meta name="generator" content={Astro.generator} />
 
     <title>{pageTitle}</title>
