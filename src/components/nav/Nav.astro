@@ -14,7 +14,10 @@ const isActive = (href: string) =>
   href === "/" ? path === "/" : path.startsWith(href);
 ---
 
-<header class="fixed inset-x-0 top-0 z-50">
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 transition-colors duration-300 data-[scrolled]:border-b data-[scrolled]:border-line/50 data-[scrolled]:bg-ink-900/70 data-[scrolled]:backdrop-blur-lg"
+>
   <nav
     aria-label="Primary"
     class="mx-auto flex max-w-[var(--max-content)] items-center justify-between px-5 py-4 md:px-8"
@@ -86,3 +89,16 @@ const isActive = (href: string) =>
     </details>
   </nav>
 </header>
+
+<script>
+  // Toggle a glass backdrop on the header once the page is scrolled.
+  // Tiny, dependency free, and a no-op for users who never scroll.
+  const header = document.getElementById("site-header");
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 24) header.setAttribute("data-scrolled", "");
+    else header.removeAttribute("data-scrolled");
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>
