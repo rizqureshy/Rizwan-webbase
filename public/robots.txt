@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Update the host to your real domain. Sitemap is generated at build time.
-Sitemap: https://example.com/sitemap-index.xml
+Sitemap: https://rizqureshy.github.io/sitemap-index.xml

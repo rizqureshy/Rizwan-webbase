@@ -119,17 +119,31 @@ alt text on real images (please add it when you replace the slots), and full
 `prefers-reduced-motion` support that disables the heavy motion and falls back
 to static visuals. Text colors target WCAG AA contrast.
 
-## Deploy
+## Deploy (GitHub Pages)
 
-The site is fully static, so it hosts anywhere. Common options:
+This repo is set up to deploy to a GitHub Pages **user site** at the root,
+`https://rizqureshy.github.io`, via the workflow in
+`.github/workflows/deploy.yml`. To go live:
 
-- **Vercel** or **Netlify**: import the repo, framework preset Astro, build
-  command `npm run build`, output directory `dist`.
-- **GitHub Pages**: build and publish `dist/`. Set `site` in `astro.config.mjs`
-  to your Pages URL.
+1. **Name the repo `rizqureshy.github.io`.** A user site only serves from a
+   repo with that exact name. Rename this repo in Settings, or create a new
+   repo named `rizqureshy.github.io` and push this code to it.
+2. **Enable Pages from Actions.** In the repo, go to Settings, then Pages, and
+   set Source to "GitHub Actions".
+3. **Push.** The workflow builds and deploys automatically on push to the
+   configured branch (currently `claude/vibrant-meitner-j1ynb9`; change it to
+   `main` in the workflow once that is your default branch). You can also run
+   it manually from the Actions tab.
 
-Set `site` in `astro.config.mjs` to your final domain so canonical URLs, the
-sitemap, and social tags are correct.
+The site is fully static, so it also hosts anywhere else (Vercel, Netlify,
+Cloudflare Pages): build with `npm run build`, publish `dist/`.
+
+### Custom domain later
+
+Set `site` in `astro.config.mjs` and `url` in `src/lib/site.ts` to the new
+domain, add a `public/CNAME` file containing the domain, and configure the
+domain under Settings, then Pages. Canonical URLs, the sitemap, and social
+tags will follow.
 
 ## Note on the WebGL hero
 

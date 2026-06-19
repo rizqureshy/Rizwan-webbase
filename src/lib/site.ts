@@ -11,8 +11,8 @@ export const site = {
     "AI strategist bridging technology and business strategy for responsible, high-impact AI adoption.",
   description:
     "Rizwan Qureshy is an AI strategist working at the intersection of enterprise AI adoption, sales enablement, and AI governance. Author of Think Before You AI.",
-  // TODO: replace with your real custom domain.
-  url: "https://example.com",
+  // Deployed origin. Update this if you move to a custom domain.
+  url: "https://rizqureshy.github.io",
   email: "rizqureshy@gmail.com",
   locale: "en_US",
 };
