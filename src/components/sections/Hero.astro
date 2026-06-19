@@ -1,0 +1,106 @@
+---
+import HeroCanvas from "../react/HeroCanvas.tsx";
+import AnimatedHeadline from "../react/AnimatedHeadline.tsx";
+import MagneticButton from "../react/MagneticButton.tsx";
+import { credentials, book } from "../../lib/site";
+---
+
+<section
+  class="relative flex min-h-[100svh] items-center overflow-hidden"
+  aria-label="Introduction"
+>
+  <!-- CSS aurora fallback (visible with no JS or reduced motion) -->
+  <div class="bg-aurora absolute inset-0" aria-hidden="true"></div>
+
+  <!-- WebGL aurora, mounts when in view, layered over the fallback -->
+  <div class="absolute inset-0" aria-hidden="true">
+    <HeroCanvas client:visible />
+  </div>
+
+  <!-- Readability scrim toward the bottom -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-ink-900/30 via-transparent to-ink-900"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto grid w-full max-w-[var(--max-content)] gap-12 px-5 pt-28 pb-20 md:px-8 lg:grid-cols-[1.4fr_1fr] lg:items-center"
+  >
+    <div>
+      <p
+        class="mb-5 inline-flex items-center gap-2 rounded-full border border-line/70 bg-ink-850/60 px-4 py-1.5 text-xs tracking-wide text-text-muted backdrop-blur"
+      >
+        <span class="h-1.5 w-1.5 rounded-full bg-azure-400"></span>
+        AI Strategist, Equinix
+      </p>
+
+      <AnimatedHeadline
+        client:load
+        text="AI strategist bridging technology and business strategy for [[responsible,]] [[high-impact]] AI adoption."
+        className="max-w-3xl text-3xl font-semibold leading-[1.05] md:text-4xl"
+      />
+
+      <p class="mt-7 max-w-xl text-lg text-text-muted">
+        I help enterprises adopt AI with confidence: governed, ethical, and
+        built to move revenue, not just headlines.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <MagneticButton client:visible href="/book">
+          Read the book
+        </MagneticButton>
+        <MagneticButton client:visible href="/contact" variant="ghost">
+          Get in touch
+        </MagneticButton>
+      </div>
+    </div>
+
+    <!-- Headshot slot inside a glass tilt card -->
+    <div class="relative mx-auto w-full max-w-sm lg:max-w-none">
+      <div
+        class="glass group relative aspect-[4/5] overflow-hidden rounded-[var(--radius-xl)] p-1.5 transition-transform duration-500 hover:-rotate-1"
+      >
+        <!--
+          IMAGE SLOT: professional headshot.
+          Replace this placeholder with: <img src="/images/headshot.jpg"
+          alt="Rizwan Qureshy" class="h-full w-full rounded-[var(--radius-lg)] object-cover" />
+        -->
+        <div
+          class="flex h-full w-full items-center justify-center rounded-[var(--radius-lg)] bg-gradient-to-br from-ink-700 to-ink-850 text-center text-sm text-text-faint"
+        >
+          Headshot slot
+          <br />
+          (add /images/headshot.jpg)
+        </div>
+      </div>
+
+      <!-- Floating book chip -->
+      <div
+        class="glass absolute -bottom-5 -left-4 max-w-[220px] rounded-[var(--radius-lg)] p-4 shadow-xl"
+      >
+        <p class="text-xs text-text-faint">Author</p>
+        <p class="mt-1 text-sm font-medium leading-snug">{book.title}</p>
+        <p class="mt-1 text-xs text-azure-400">{book.highlight}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Credential ticker -->
+  <div
+    class="absolute inset-x-0 bottom-0 border-t border-line/40 bg-ink-900/60 backdrop-blur"
+  >
+    <ul
+      class="mx-auto flex max-w-[var(--max-content)] flex-wrap items-center gap-x-8 gap-y-2 px-5 py-4 text-xs text-text-muted md:px-8"
+    >
+      {
+        credentials.map((c) => (
+          <li class="flex items-center gap-2">
+            <span class="h-1 w-1 rounded-full bg-violet-400" />
+            {c.label}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
