@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; }
+      body {
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(60% 80% at 12% 8%, rgba(124,92,255,0.30), transparent 70%),
+          radial-gradient(55% 70% at 92% 18%, rgba(91,141,239,0.32), transparent 70%),
+          #0a0e1a;
+        color: #e8ecf4;
+        position: relative;
+        overflow: hidden;
+        padding: 72px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .grain {
+        position: absolute; inset: 0;
+        background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 22px 22px;
+      }
+      .top { display: flex; align-items: center; gap: 14px; position: relative; z-index: 2; }
+      .dot {
+        width: 16px; height: 16px; border-radius: 999px;
+        background: linear-gradient(135deg, #5b8def, #7c5cff);
+        box-shadow: 0 0 24px rgba(91,141,239,0.8);
+      }
+      .name { font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+      .mid { position: relative; z-index: 2; }
+      .eyebrow {
+        font-size: 20px; font-weight: 600; letter-spacing: 0.22em;
+        text-transform: uppercase; color: #7eaaff; margin-bottom: 26px;
+      }
+      h1 {
+        font-size: 64px; font-weight: 700; line-height: 1.04;
+        letter-spacing: -0.025em; max-width: 1000px;
+      }
+      .accent {
+        background: linear-gradient(100deg, #e8ecf4 0%, #7eaaff 55%, #9b80ff 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      .bottom {
+        position: relative; z-index: 2;
+        display: flex; align-items: center; justify-content: space-between;
+      }
+      .chips { display: flex; gap: 14px; }
+      .chip {
+        font-size: 20px; color: #94a0b8;
+        border: 1px solid #233152; border-radius: 999px;
+        padding: 10px 22px; background: rgba(15,22,41,0.6);
+      }
+      .book { font-size: 20px; color: #94a0b8; }
+      .book b { color: #e8ecf4; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <div class="grain"></div>
+
+    <div class="top">
+      <div class="dot"></div>
+      <div class="name">Rizwan Qureshy</div>
+    </div>
+
+    <div class="mid">
+      <div class="eyebrow">AI Strategist, Equinix</div>
+      <h1>
+        Bridging technology and business strategy for
+        <span class="accent">responsible, high-impact AI adoption.</span>
+      </h1>
+    </div>
+
+    <div class="bottom">
+      <div class="chips">
+        <div class="chip">Responsible AI</div>
+        <div class="chip">Sales enablement</div>
+        <div class="chip">AI governance</div>
+      </div>
+      <div class="book">Author of <b>Think Before You AI</b></div>
+    </div>
+  </body>
+</html>

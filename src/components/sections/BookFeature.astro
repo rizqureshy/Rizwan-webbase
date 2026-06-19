@@ -48,17 +48,14 @@ import { book } from "../../lib/site";
 
       <!-- Book cover slot -->
       <Reveal client:visible delay={0.1}>
-        <div
-          class="glass mx-auto flex aspect-[3/4] w-44 items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br from-ink-700 to-ink-850 text-center text-xs text-text-faint md:w-52"
-        >
-          <!--
-            IMAGE SLOT: book cover.
-            Replace with <img src="/images/book-cover.jpg" alt="Cover of Think Before You AI" ... />
-          -->
-          Book cover slot
-          <br />
-          (add /images/book-cover.jpg)
-        </div>
+        <img
+          src="/images/book-cover.jpg"
+          alt="Cover of Think Before You AI by Rizwan Qureshy"
+          width="416"
+          height="555"
+          loading="lazy"
+          class="mx-auto w-44 rounded-[var(--radius-md)] shadow-2xl md:w-52"
+        />
       </Reveal>
     </div>
   </div>

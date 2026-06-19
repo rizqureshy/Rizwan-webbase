@@ -88,16 +88,19 @@ replace the placeholder markup noted in the comment beside each one:
 - `public/images/headshot.jpg` (used on the home hero and the about page)
 - `public/images/book-cover.jpg` (book page and home callout)
 - `public/files/rizwan-qureshy-bio.pdf` (about page download)
-- `public/og/default.png` (1200x630 social share image)
+
+The social share image `public/og/default.png` is already generated from the
+brand design and included. See `public/og/README.md` to change it.
 
 ## Things to replace before launch
 
 Search the codebase for `TODO` and update:
 
-- Contact email, currently `hello@example.com` (in `src/lib/site.ts`).
 - Custom domain, currently `https://example.com` (in `src/lib/site.ts`,
   `astro.config.mjs`, and `public/robots.txt`).
-- LinkedIn URL and the book's Amazon URL (in `src/lib/site.ts`).
+- The book's Amazon URL (in `src/lib/site.ts`).
+
+Contact email and LinkedIn URL are already set.
 
 ## SEO and metadata
 
